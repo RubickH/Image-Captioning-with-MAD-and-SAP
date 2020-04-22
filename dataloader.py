@@ -77,9 +77,10 @@ class DataLoader(data.Dataset):
                 self.split_ix['train'].append(ix)
             elif img['split'] == 'val':
                 self.split_ix['val'].append(ix)
-                self.split_ix['train'].append(ix)
             elif img['split'] == 'test':
-                self.split_ix['test'].append(ix)
+                self.split_ix['test'].append(ix)            
+            else: # restval
+                self.split_ix['train'].append(ix)
 
 
         print('assigned %d images to split train' %len(self.split_ix['train']))
@@ -163,8 +164,8 @@ class DataLoader(data.Dataset):
         # #sort by att_feat length
         # fc_batch, att_batch, label_batch, gts, infos = \
         #     zip(*sorted(zip(fc_batch, att_batch, np.vsplit(label_batch, batch_size), gts, infos), key=lambda x: len(x[1]), reverse=True))
-        fc_batch, att_batch,attr_label_batch, label_batch, gts, infos = \
-            zip(*sorted(zip(fc_batch, att_batch,attr_label_batch, np.vsplit(label_batch, batch_size), gts, infos), key=lambda x: 0, reverse=True))
+        #fc_batch, att_batch,attr_label_batch, label_batch, gts, infos = \
+        #    zip(*sorted(zip(fc_batch, att_batch,attr_label_batch, np.vsplit(label_batch, batch_size), gts, infos), key=lambda x: 0, reverse=True))
         data = {}
         data['fc_feats'] = np.stack(reduce(lambda x,y:x+y, [[_]*seq_per_img for _ in fc_batch]))
         data['attr_labels'] = np.stack(reduce(lambda x,y:x+y, [[_]*seq_per_img for _ in attr_label_batch]))
