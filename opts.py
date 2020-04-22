@@ -39,9 +39,9 @@ def parse_opt():
     parser.add_argument('--input_label_h5', type=str, default='data/cocotalk_attr_label.h5',
                     help='path to the h5file containing the preprocessed dataset')
         
-    parser.add_argument('--input_attr_label_dir', type=str, default='data/coco_mask_att',
+    parser.add_argument('--input_attr_label_dir', type=str, default='data/coco_attr_label',
                     help='path to the directory containing the labels of atttributes')    
-    parser.add_argument('--input_subsequent_label_dir', type=str,default='data/coco_tran_label',
+    parser.add_argument('--input_subsequent_label_dir', type=str,default='data/coco_subsequent_label',
                         help='path to the directory containing labels of subsequent atttributes')
     
 
