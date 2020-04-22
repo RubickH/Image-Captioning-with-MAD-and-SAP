@@ -160,7 +160,7 @@ def train(opt):
     accumulate_iter = 0
     train_loss = 0
   
-    subsequent_mat = np.load('normed_transfer.npy')
+    subsequent_mat = np.load('data/markov_mat.npy')
     subsequent_mat = torch.from_numpy(subsequent_mat).cuda(device=0).float()
     subsequent_mat_all = subsequent_mat.clone()
     # for multi-GPU training
@@ -237,20 +237,20 @@ def train(opt):
             gen_result,sample_logprobs,_ = dp_model(fc_feats, att_feats, attr_labels,subsequent_mat_all,sm, mode='sample')
             dp_model.eval()
             with torch.no_grad():
-                greedy_res,_ = dp_model(fc_feats, att_feats,attr_labels,subsequent_mat_all, mode='sample')
+                greedy_res,_,_ = dp_model(fc_feats, att_feats,attr_labels,subsequent_mat_all, mode='sample')
             dp_model.train()
             ed = time.time()
             print('GPU time is : {}s'.format(ed-st))
             reward = get_self_critical_reward(gen_result,greedy_res,data['gts'])
-            _,word_loss = dp_model(subsequent_probs,sample_logprobs, gen_result.data, torch.from_numpy(reward).float().cuda(),mode='scst_forward')
+            word_loss = dp_model(sample_logprobs, gen_result.data, torch.from_numpy(reward).float().cuda(),mode='scst_forward')
             word_loss = word_loss.mean()
-            MAD_loss = MAD_loss.mean()
+       
             loss = word_loss
             
             #forward to minimize SAP loss and MAD loss
             SAP_loss, _, MAD_loss = dp_model(fc_feats, att_feats, labels,masks, attr_labels,subsequent_labels,subsequent_mask,subsequent_mat_all)
             SAP_loss = SAP_loss.mean()
-            
+            MAD_loss = MAD_loss.mean()
             loss = loss + 0.2*SAP_loss+0.2*MAD_loss
             loss.backward()             
             accumulate_iter = accumulate_iter + 1
@@ -314,7 +314,7 @@ def train(opt):
                            'index_eval':1,
                            'id':opt.id,
                            'beam':opt.beam,
-                           'verbose_loss':0,
+                           'verbose_loss':1,
                            'checkpoint_path':opt.checkpoint_path
                            }
             eval_kwargs.update(vars(opt))
