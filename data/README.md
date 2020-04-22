@@ -30,8 +30,14 @@ unzip trainval.zip
 Then:
 
 ```bash
-python scripts/make_bu_data.py ----downloaded_feats where-you-place-the-updown-feature --output_dir data/cocobu
+python scripts/make_bu_data.py --downloaded_feats where-you-place-the-updown-feature --output_dir data/cocobu
 ```
 
 This will create `data/cocobu_fc_36`, `data/cocobu_att_36` and `data/cocobu_box_36`. We use the '36' feature for the sake of easier implementation of MAD.
 
+### Prepare Addtional labels
+
+We extract attribute labels, subsequent attribute labels, and the transition matrix from `data/cocotalk_label_attr.h5`.
+```bash
+python prepare_addtional_data.py
+```
