@@ -20,9 +20,9 @@ os.environ["CUDA_VISIBLE_DEVICES"]="0"
 # Input arguments and options
 parser = argparse.ArgumentParser()
 # Input paths
-model_id = 'MAD_SAP'
-model_index = '0001'
-subsequent_mat = np.load('normed_transfer.npy').astype(np.float32)
+model_id = '2208MADSAP0421_4'  #the id of the model to eval
+model_index = '0012'           #checkpoint number
+subsequent_mat = np.load('data/markov_mat.npy').astype(np.float32)
 subsequent_mat = torch.from_numpy(subsequent_mat).cuda(device=0)
 
 #most frequently modifed options
@@ -30,7 +30,7 @@ parser.add_argument('--beam', type=int, default=1,
                 help='whether beam search')
 parser.add_argument('--batch_size', type=int, default=100,
                 help='if > 0 then overrule, otherwise load from checkpoint.')
-parser.add_argument('--selected_num', type=int, default=10,
+parser.add_argument('--selected_num', type=int, default=15,
                         help='num of selected attributes')
 #model information
 parser.add_argument('--model', type=str, default='checkpoints/'+model_id+'/model'+model_id+model_index+'.pth',
@@ -115,7 +115,7 @@ model.load_state_dict(torch.load(opt.model))
 model.cuda()
 model.eval()
 
-
+loader = DataLoader(opt)
 loader.ix_to_word = infos['vocab']
 
 
