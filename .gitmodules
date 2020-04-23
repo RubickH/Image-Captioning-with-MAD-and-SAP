@@ -1,3 +1,6 @@
 [submodule "cider-master"]
 	path = cider-master
 	url = https://github.com/vrama91/cider.git
+[submodule "coco-caption"]
+	path = coco-caption
+	url = https://github.com/tylin/coco-caption
