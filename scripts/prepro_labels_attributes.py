@@ -182,7 +182,7 @@ if __name__ == "__main__":
     # input json
     parser.add_argument('--input_json', default='data/dataset_coco.json', help='input json file to process into hdf5')
     parser.add_argument('--output_json', default='data/cocotalk_attr.json', help='output json file')
-    parser.add_argument('--output_h5', default='data/cocotalk_attr_label.h5', help='output h5 file')
+    parser.add_argument('--output_h5', default='data/cocotalk_attr', help='output h5 file')
     parser.add_argument('--images_root', default='', help='root location in which images are stored, to be prepended to file_path in input json')
 
     # options
