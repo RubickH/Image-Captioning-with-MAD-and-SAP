@@ -1,6 +1,6 @@
 # Image Captioning with End-to-End Attribute Detection and Subsequent Attributes Prediction
 
-This repository includes the implementation for [Image Captioning with End-to-End Attribute Detection and Subsequent Attributes Prediction](https://ieeexplore.ieee.org/document/8976408) (IEEE TIP 2020 vol 29).
+This repository includes the implementation for [Image Captioning with End-to-End Attribute Detection and Subsequent Attributes Prediction](https://ieeexplore.ieee.org/document/8976408) (IEEE TIP, 2020, vol 29).
 
 ## Requirements
 
