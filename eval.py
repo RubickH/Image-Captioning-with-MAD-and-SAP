@@ -20,7 +20,7 @@ os.environ["CUDA_VISIBLE_DEVICES"]="0"
 # Input arguments and options
 parser = argparse.ArgumentParser()
 # Input paths
-model_id = '2208MADSAP0421_4'  #the id of the model to eval
+model_id = 'MADSAP0509'  #the id of the model to eval
 model_index = '0012'           #checkpoint number
 subsequent_mat = np.load('data/markov_mat.npy').astype(np.float32)
 subsequent_mat = torch.from_numpy(subsequent_mat).cuda(device=0)
