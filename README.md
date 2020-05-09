@@ -26,10 +26,9 @@ $ python scripts/prepro_ngrams.py --input_json data/dataset_coco.json --dict_jso
 ### Start training
 
 ```bash
-$ base xe_train.sh
-$ base scst_train.sh --start_from the-checkpoint-number
+$ base train.sh
 ```
-We train our model on 4 Tesla P100 GPUs, you can change the batch_size and gpu_nums in xe_train.sh  to train the model on your own hardware.
+We train our model on 2 RTX 2080Ti GPUs, you can change the batch_size and gpu_nums in xe_train.sh  to train the model on your own hardware.
 See `opts.py` for the options. (The pretrained models are comming soon.)
 
 
