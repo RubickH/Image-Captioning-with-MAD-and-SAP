@@ -413,7 +413,7 @@ class subsequent_attribute_predictor(nn.Module):
         x3 = torch.mm(subsequent_mat,x2)
         x4 = self.attr_fc2(x3)
         x5 = self.attr_fc3(x4)        
-        susequent_attr_embedding = word_embedding[previous_attr]
+        susequent_attr_embedding = x5[previous_attr]
         
         input_feat = torch.cat([h_att,susequent_attr_embedding],dim=1)
         logits = prob_det*self.f2logit(input_feat)
