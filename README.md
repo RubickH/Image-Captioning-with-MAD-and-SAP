@@ -26,7 +26,7 @@ $ python scripts/prepro_ngrams.py --input_json data/dataset_coco.json --dict_jso
 ### Start training
 
 ```bash
-$ base train.sh
+$ bash train.sh
 ```
 We train our model on 2 TitanXp GPUs, you can change the batch_size and gpu_nums in xe_train.sh  to train the model on your own hardware.
 See `opts.py` for the options. The pretrained models can be downloaded [here](https://drive.google.com/open?id=1-JRl_3Vf0tzyOgEwfCH6yNDIdCyobNvH).
